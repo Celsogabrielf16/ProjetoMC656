@@ -12,6 +12,8 @@ import { FaEnvelope, FaLock } from "react-icons/fa";
 import { BsPersonFill } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 
+import { registerUser } from "@/services/registerService";
+
 const inputs = [
 	{
 		name: "name",
@@ -42,8 +44,13 @@ const Register: React.FC = () => {
 		resolver: zodResolver(registerSchema),
 	});
 
-	const onSubmit = (data: FormData) => {
-		console.log(data);
+	const onSubmit = async (data: FormData) => {
+		try {
+			await registerUser(data.name, data.email, data.password);
+			push("/login");
+		} catch (err: any) {
+			window.alert("Erro ao cadastrar:", err.message);
+		}
 	};
 
 	return (
