@@ -11,6 +11,8 @@ import { z } from "zod";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
+import { login } from "@/services/authService";
+
 const inputs = [
 	{
 		name: "email",
@@ -35,9 +37,14 @@ const Login: React.FC = () => {
 		resolver: zodResolver(loginSchema),
 	});
 
-	const onSubmit = (data: FormData) => {
-		console.log(data);
-	};
+	const onSubmit = async (data: FormData) => {
+		try {
+		  const user = await login(data.email, data.password);
+		  alert(`Login realizado com sucesso! Bem-vindo(a), ${user.name}`);
+		} catch (error: any) {
+		  alert(error.message);
+		}
+	  };
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit, console.log)}>
