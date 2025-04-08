@@ -3,4 +3,5 @@ O software a ser desenvolvido é um site para empréstimo temporário de bicicle
 
 ## Membros
 Celso Gabriel Ferreira Marçal Prado 235393
+Vinicius Forato Coracin 231528
 Vitor Ferreira dos Santos de Lacerda 231524
