@@ -49,7 +49,7 @@ const Register: React.FC = () => {
 			await registerUser(data.name, data.email, data.password);
 			push("/login");
 		} catch (err: any) {
-			window.alert("Erro ao cadastrar:", err.message);
+			window.alert("Erro ao cadastrar:" + err.message);
 		}
 	};
 
