@@ -6,3 +6,4 @@ O software a ser desenvolvido é um site para empréstimo temporário de bicicle
 - Vinicius Forato Coracin 231528
 - Vitor Ferreira dos Santos de Lacerda 231524
 - Artur Dias de Oliveira 252635
+- Luiz Antônio Corrêa de Oliveira 240429
