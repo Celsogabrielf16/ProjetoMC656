@@ -9,8 +9,6 @@ Realizamos uma sessão de brainstorming para identificar e documentar os requisi
 - Artur Dias De Oliveira
 - Celso Gabriel Ferreira Marçal Prado
 - Luiz Antônio Corrêa de Oliveira
-- Pedro Bernardo Calou
-- Vinicius Forato Coracin
 - Vitor Ferreira Dos Santos De Lacerda
 
 ### Metodologia
@@ -23,7 +21,8 @@ Realizamos uma sessão de brainstorming para identificar e documentar os requisi
    - Discussão em grupo para consolidar sugestões repetidas ou complementares.
 
 3. *Evidências*:
-   - Print do board do FigJam: https://drive.google.com/file/d/12WJFQGQd2KjVKC-LvoPtWCUzn8w5c419/view?usp=sharing
+   - Print do board do FigJam:
+     ![Print do FigJam](https://github.com/user-attachments/assets/e0eac42a-311c-494c-8a0c-c76248015fce)
    - Lista consolidada abaixo.
 
 ---
