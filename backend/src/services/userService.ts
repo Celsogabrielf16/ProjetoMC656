@@ -1,41 +1,49 @@
 import * as userModel from '../models/userModel';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+import { generateToken } from '../utils/authUtils';
 
-export const login = async (email: string, password: string) => {
-    const user = await userModel.findUserByEmail(email);
+import { User } from '../types/user';
 
-    if (!user || !(await bcrypt.compare(password, user.password)))
+export const login = async ({ email, password }: Pick<User, 'email' | 'password'>) => {
+    const user = await userModel.findUserByEmail({ email });
+
+    if (!user) {
         throw new Error('Credenciais inválidas');
+    }
 
-    const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_WORD!, { expiresIn: '30d' });
-    
-    return token;
+    const arePasswordsEqual = await bcrypt.compare(password, user.password)
+
+    if (!arePasswordsEqual) {
+        throw new Error('Credenciais inválidas');
+    }
+
+    return generateToken(user.id, user.email);
 }
 
-export const register = async (name: string, email: string, passsword: string) => {
-    const existingUser = await userModel.findUserByEmail(email);
+export const register = async ({ name, email, password }: Pick<User, 'name' | 'email' | 'password'>) => {
+    const existingUser = await userModel.findUserByEmail({ email });
 
-    if (existingUser)
+    if (existingUser) {
         throw new Error('Usuário já existe');
+    }
 
-    const hashedPassword = await bcrypt.hash(passsword, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    const user = await userModel.register(name, email, hashedPassword);
+    const user = await userModel.register({ name, email, hashedPassword });
 
-    if (!user)
+    if (!user) {
         throw new Error('Erro ao fazer o cadastro');
+    }
 
-    const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_WORD!, { expiresIn: '30d' });
-
-    return token;
+    return generateToken(user.id, user.email);
 }
 
 export const getAllUsers = async () => {
     const users = await userModel.getAllUsers();
 
-    if (!users || users.length === 0)
+    if (!users || users.length === 0) {
         throw new Error('Nenhum usuário encontrado');
+    }
 
     return users;
-}
+} 
