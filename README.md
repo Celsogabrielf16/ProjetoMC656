@@ -11,7 +11,7 @@ O software a ser desenvolvido é um site para empréstimo temporário de bicicle
 # Decisões Arquiteturais
 
 ## Diagrama C4
-https://drive.google.com/file/d/1SfdFgCYsYLCPyDRoff1DRShqWt_jM4m7/view?usp=sharing
+https://drive.google.com/file/d/1qbmodngLRIT6sF1X89ndOgvij0h4v5uQ/view?usp=sharing
 
 ## Componentes Principais e Suas Responsabilidades
 
