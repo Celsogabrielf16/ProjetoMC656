@@ -8,10 +8,35 @@ O software a ser desenvolvido é um site para empréstimo temporário de bicicle
 - Artur Dias de Oliveira 252635
 - Luiz Antônio Corrêa de Oliveira 240429
 
-# Decisões Arquiteturais
-
 ## Diagrama C4
 https://drive.google.com/file/d/1qbmodngLRIT6sF1X89ndOgvij0h4v5uQ/view?usp=sharing
+
+## Arquitetura em Camadas - Sistema de Aluguel de Bicicletas
+
+O sistema segue uma arquitetura em camadas, promovendo separação de responsabilidades e facilitando a manutenção e escalabilidade da aplicação.
+
+### 1. Camada de Apresentação (Frontend)
+
+* **Tecnologia:** JavaScript com React.js
+* **Responsabilidade:** Interação com o usuário final via navegador, envio de requisições para a API e exibição de dados.
+
+### 2. Camada de Aplicação (Backend - API)
+
+* **Tecnologia:** Estrutura MVC com Controllers e Services
+* **Responsabilidade:** Processamento da lógica de negócio, validação de dados, coordenação entre frontend, serviços e banco de dados.
+
+  * **Controllers:** Recebem e tratam requisições da interface.
+  * **Services:** Executam a lógica de negócio específica de cada funcionalidade.
+
+### 3. Camada de Persistência (Banco de Dados)
+
+* **Tecnologia:** PostgreSQL com Prisma
+* **Responsabilidade:** Armazenamento e recuperação de dados relacionados a usuários, bicicletas, aluguéis e avaliações.
+
+### 4. Sistema Externo (Gateway de Pagamento)
+
+* **Responsabilidade:** Processar os pagamentos realizados pelos usuários através da integração com o backend.
+
 
 ## Componentes Principais e Suas Responsabilidades
 
