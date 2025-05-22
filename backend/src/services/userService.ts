@@ -1,6 +1,7 @@
 import * as userModel from '../models/userModel';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+import { generateToken } from '../utils/authUtils';
+
 
 export const login = async (email: string, password: string) => {
     const user = await userModel.findUserByEmail(email);
@@ -8,9 +9,7 @@ export const login = async (email: string, password: string) => {
     if (!user || !(await bcrypt.compare(password, user.password)))
         throw new Error('Credenciais inválidas');
 
-    const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_WORD!, { expiresIn: '30d' });
-    
-    return token;
+    return generateToken(user.id, user.email);
 }
 
 export const register = async (name: string, email: string, passsword: string) => {
@@ -26,9 +25,7 @@ export const register = async (name: string, email: string, passsword: string) =
     if (!user)
         throw new Error('Erro ao fazer o cadastro');
 
-    const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_WORD!, { expiresIn: '30d' });
-
-    return token;
+    return generateToken(user.id, user.email);
 }
 
 export const getAllUsers = async () => {
@@ -38,4 +35,4 @@ export const getAllUsers = async () => {
         throw new Error('Nenhum usuário encontrado');
 
     return users;
-}
+} 
