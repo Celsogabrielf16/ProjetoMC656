@@ -51,3 +51,12 @@ export const register = async ({ name, email, password }: Pick<User, 'name' | 'e
 
     return generateToken(user.id, user.email);
 }
+
+export const listUserBikes = async (id: number) => {
+    const bikes = await userModel.listUserBikes(id);
+
+    if (!bikes || bikes.length === 0)
+        throw new Error('Nenhuma bicicleta encontrada para este usuário');
+
+    return bikes;
+}

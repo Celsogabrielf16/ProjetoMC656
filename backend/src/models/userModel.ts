@@ -25,3 +25,8 @@ export const findUserById = async (id: number): Promise<UserWithRelations | null
         include: userInclude
     });
 }
+
+export const listUserBikes = async (id: number): Promise<Bike[]> => {
+    const user = await findUserById(id);
+    return user?.bikes ?? [];
+}

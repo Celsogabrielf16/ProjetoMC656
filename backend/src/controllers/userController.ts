@@ -42,4 +42,14 @@ export class UserController {
       return ErrorHandler.handle(res, error);
     }
   }
+
+  public static async listUserBikes(req: Request, res: Response) {
+    try {
+      const userId = extractUserIdFromToken(req.headers.authorization);
+      const bikes = await userService.listUserBikes(userId);
+      res.status(200).json(bikes);
+    } catch (error) {
+      return ErrorHandler.handle(res, error);
+    }
+  }
 }

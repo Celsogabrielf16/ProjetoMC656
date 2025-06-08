@@ -19,4 +19,8 @@ router.get('/me', (req, res) => {
     UserController.getUserById(req, res);
 });
 
+router.get('/me/bikes', (req, res) => {
+    UserController.listUserBikes(req, res);
+});
+
 export default router;
