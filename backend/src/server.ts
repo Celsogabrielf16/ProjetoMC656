@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
 import userRouter from './routes/userRouter';
+import bikeRouter from './routes/bikeRouter';
 
 dotenv.config();
 
@@ -17,5 +18,6 @@ server.use(cors({
 }))
 
 server.use('/user', userRouter);
+server.use('/bike', bikeRouter)
 
 server.listen(3001, () => console.log('API rodando na porta 3001'));
