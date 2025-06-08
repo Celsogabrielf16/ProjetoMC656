@@ -15,4 +15,8 @@ router.post('/register', (req, res) => {
     UserController.register(req, res);
 });
 
+router.get('/me', (req, res) => {
+    UserController.getUserById(req, res);
+});
+
 export default router;
