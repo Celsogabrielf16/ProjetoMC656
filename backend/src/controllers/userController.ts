@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import * as userService from '../services/userService';
 import { ErrorHandler } from '../utils/ErrorHandler';
+import { UserValidator } from '../validators/userValidator';
 import { extractUserIdFromToken } from '../utils/authUtils';
 
 export class UserController {
@@ -16,6 +17,8 @@ export class UserController {
   public static async login(req: Request, res: Response) {
     try {
       const { email, password } = req.body;
+
+      UserValidator.validateLogin({ email, password });
       const token = await userService.login({ email, password });
       res.status(200).json({ token });
     } catch (error) {
