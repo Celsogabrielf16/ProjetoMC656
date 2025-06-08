@@ -16,6 +16,14 @@ export type BikeToBeCreated = {
   locationLng: number;
 };
 
+export type BikeFilter = {
+  model?: string;
+  maxPrice?: number;
+  maxDistance?: number;
+  userLat?: number;
+  userLng?: number;
+}
+
 export type BikeWithRelations = Prisma.BikeGetPayload<{
   include: typeof bikeInclude;
 }>;

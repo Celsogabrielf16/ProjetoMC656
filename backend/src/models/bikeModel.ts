@@ -1,5 +1,5 @@
 import prisma from '../configs/databaseConfig';
-import { Bike, BikeToBeCreated } from '../types/bike';
+import { Bike, BikeFilter, BikeToBeCreated } from '../types/bike';
 
 export const getAllBikes = async (): Promise<Bike[] | null> => {
     return await prisma.bike.findMany();
@@ -18,6 +18,21 @@ export const getBikeById = async (id: number): Promise<Bike | null> => {
             },
             reviews: true,
         }
+    });
+}
+
+export const filterBike = async ({model, maxPrice}: Pick<BikeFilter, 'model' | 'maxPrice'>) => {
+    return await prisma.bike.findMany({
+        where: {
+            isAvailable: true,
+            model: model ? {
+                contains: model,
+                mode: 'insensitive',
+            }: undefined,
+            hourlyRate: maxPrice ? {
+                lte: maxPrice,
+            } : undefined,
+        },
     });
 }
 

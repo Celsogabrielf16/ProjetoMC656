@@ -1,4 +1,4 @@
-import { getBikeById } from './../models/bikeModel';
+import { getBikeById, filterBike } from './../models/bikeModel';
 import { Request, Response } from 'express';
 import * as bikeService from '../services/bikeService';
 import { ErrorHandler } from '../utils/ErrorHandler';
@@ -23,6 +23,24 @@ export class BikeController {
 
             const bike = await bikeService.getBikeById(bikeId);
             res.status(200).json(bike);
+        } catch (error) {
+            return ErrorHandler.handle(res, error);
+        }
+    }
+
+    public static async filterBike(req: Request, res: Response) {
+        try {
+            const { model, maxPrice, maxDistance, userLat, userLng } = req.query;
+
+            const bikes = await bikeService.filterBike({
+                model: model?.toString(),
+                maxPrice: maxPrice ? parseFloat(maxPrice.toString()) : undefined,
+                maxDistance: maxDistance ? parseFloat(maxDistance.toString()) : undefined,
+                userLat: userLat ? parseFloat(userLat.toString()) : undefined,
+                userLng: userLng ? parseFloat(userLng.toString()) : undefined,
+            });
+
+            res.status(200).json(bikes);
         } catch (error) {
             return ErrorHandler.handle(res, error);
         }
