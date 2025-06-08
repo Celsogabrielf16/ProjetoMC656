@@ -9,6 +9,14 @@ export const getAllBikes = async () => {
 
     return bikes;
 }
+export const getBikeById = async (id: number) => {
+    const bike = await bikeModel.getBikeById(id);
+
+    if (!bike)
+        throw new Error('Bicicleta não encontrada');
+
+    return bike;
+}
 
 export const createBike = async (bikeData: BikeToBeCreated) => {
     const bike = await bikeModel.createBike(bikeData);

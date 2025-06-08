@@ -11,4 +11,8 @@ router.post('/', (req, res) => {
     BikeController.createBike(req, res);
 });
 
+router.get('/:id', (req, res) => {
+    BikeController.getBikeById(req, res);
+});
+
 export default router;
