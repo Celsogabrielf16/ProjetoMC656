@@ -35,3 +35,8 @@ export const listUserRentals = async (id: number): Promise<Rental[] | null> => {
     const user = await findUserById(id);
     return user?.rentals ?? [];
 }
+
+export const listUserChats = async (id: number): Promise<Chat[] | null> => {
+    const user = await findUserById(id);
+    return [...(user?.sentChats ?? []), ...(user?.receivedChats ?? [])];
+}

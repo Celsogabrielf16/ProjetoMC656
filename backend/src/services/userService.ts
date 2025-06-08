@@ -69,3 +69,12 @@ export const listUserRentals = async (id: number) => {
 
     return rentals;
 }
+
+export const listUserChats = async (id: number) => {
+    const chats = await userModel.listUserChats(id);
+
+    if (!chats || chats.length === 0)
+        throw new Error('Nenhuma conversa encontrada para este usuário');
+
+    return chats;
+}

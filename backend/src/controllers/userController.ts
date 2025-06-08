@@ -62,4 +62,14 @@ export class UserController {
       return ErrorHandler.handle(res, error);
     }
   }
+
+  public static async listUserChats(req: Request, res: Response) {
+    try {
+      const userId = extractUserIdFromToken(req.headers.authorization);
+      const chats = await userService.listUserChats(userId);
+      res.status(200).json(chats);
+    } catch (error) {
+      return ErrorHandler.handle(res, error);
+    }
+  }
 }

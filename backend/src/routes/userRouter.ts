@@ -27,4 +27,8 @@ router.get('/me/rentals', (req, res) => {
     UserController.listUserRentals(req, res);
 });
 
+router.get('/me/chats', (req, res) => {
+    UserController.listUserChats(req, res);
+});
+
 export default router;
