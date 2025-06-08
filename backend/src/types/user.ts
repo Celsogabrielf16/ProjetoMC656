@@ -1,12 +1,9 @@
-export type User = {
-  id: number;
-  name: string;
-  email: string;
-  password: string;
-}
+import { User as PrismaUser } from "@prisma/client";
+
+export type User = PrismaUser;
 
 export type UserToBeCreated = {
   name: string;
   email: string;
-  hashedPassword: string;
-}
+  password: string;
+};

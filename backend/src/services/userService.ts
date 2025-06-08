@@ -29,7 +29,7 @@ export const register = async ({ name, email, password }: Pick<User, 'name' | 'e
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const user = await userModel.register({ name, email, hashedPassword });
+    const user = await userModel.register({ name, email, password: hashedPassword });
 
     if (!user) {
         throw new Error('Erro ao fazer o cadastro');
