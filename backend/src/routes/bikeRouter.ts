@@ -7,4 +7,8 @@ router.get('/', (req, res) => {
     BikeController.getAllBikes(req, res);
 });
 
+router.post('/', (req, res) => {
+    BikeController.createBike(req, res);
+});
+
 export default router;
