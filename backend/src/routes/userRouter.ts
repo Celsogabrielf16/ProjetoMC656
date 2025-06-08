@@ -23,4 +23,8 @@ router.get('/me/bikes', (req, res) => {
     UserController.listUserBikes(req, res);
 });
 
+router.get('/me/rentals', (req, res) => {
+    UserController.listUserRentals(req, res);
+});
+
 export default router;

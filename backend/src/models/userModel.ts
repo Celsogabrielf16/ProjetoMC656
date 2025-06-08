@@ -30,3 +30,8 @@ export const listUserBikes = async (id: number): Promise<Bike[]> => {
     const user = await findUserById(id);
     return user?.bikes ?? [];
 }
+
+export const listUserRentals = async (id: number): Promise<Rental[] | null> => {
+    const user = await findUserById(id);
+    return user?.rentals ?? [];
+}

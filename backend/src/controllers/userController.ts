@@ -52,4 +52,14 @@ export class UserController {
       return ErrorHandler.handle(res, error);
     }
   }
+
+  public static async listUserRentals(req: Request, res: Response) {
+    try {
+      const userId = extractUserIdFromToken(req.headers.authorization);
+      const rentals = await userService.listUserRentals(userId);
+      res.status(200).json(rentals);
+    } catch (error) {
+      return ErrorHandler.handle(res, error);
+    }
+  }
 }

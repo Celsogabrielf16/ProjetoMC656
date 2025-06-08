@@ -60,3 +60,12 @@ export const listUserBikes = async (id: number) => {
 
     return bikes;
 }
+
+export const listUserRentals = async (id: number) => {
+    const rentals = await userModel.listUserRentals(id);
+
+    if (!rentals || rentals.length === 0)
+        throw new Error('Nenhum aluguel encontrado para este usuário');
+
+    return rentals;
+}
