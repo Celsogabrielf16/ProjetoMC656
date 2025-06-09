@@ -16,3 +16,13 @@ export const createRental = async (rentalData: RentalToBeCreated): Promise<Renta
         data: rentalData
     });
 };
+
+export const updateRental = async (id: number): Promise<Rental | null> => {
+    return await prisma.rental.update({
+        where: { id },
+        data: {
+            endTime: new Date(),
+            status: 'completed',
+        }
+    });
+}

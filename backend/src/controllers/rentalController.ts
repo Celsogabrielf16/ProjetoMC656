@@ -24,4 +24,14 @@ export class RentalController {
       return ErrorHandler.handle(res, error);
     }
   }
+
+  public static async updateRental(req: Request, res: Response) {
+    try {
+      const rentalId = parseInt(req.params.id, 10);
+      const updatedRental = await rentalService.updateRental(rentalId);
+      res.status(200).json(updatedRental);
+    } catch (error) {
+      return ErrorHandler.handle(res, error);
+    }
+  }
 }

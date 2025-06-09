@@ -11,4 +11,8 @@ router.post("/", (req, res) => {
     RentalController.createRental(req, res);
 });
 
+router.patch("/:id", (req, res) => {
+    RentalController.updateRental(req, res);
+});
+
 export default router;

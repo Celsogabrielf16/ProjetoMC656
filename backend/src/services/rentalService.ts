@@ -18,3 +18,12 @@ export const createRental = async (rentalData: RentalToBeCreated) => {
 
     return rental;
 }
+
+export const updateRental = async (id: number) => {
+    const rental = await rentalModule.updateRental(id);
+
+    if (!rental)
+        throw new Error('Erro ao atualizar a locação');
+
+    return rental;
+}
