@@ -7,4 +7,8 @@ router.get("/user", (req, res) => {
     RentalController.getRentalByUserId(req, res);
 });
 
+router.post("/", (req, res) => {
+    RentalController.createRental(req, res);
+});
+
 export default router;

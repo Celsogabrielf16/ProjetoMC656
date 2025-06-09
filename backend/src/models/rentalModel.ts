@@ -1,5 +1,5 @@
 import prisma from "../configs/databaseConfig";
-import { Rental } from "../types/rental";
+import { Rental, RentalToBeCreated } from "../types/rental";
 
 export const getRentalByUserId = async (userId: number): Promise<Rental[] | null> => {
     return await prisma.rental.findMany({
@@ -10,3 +10,9 @@ export const getRentalByUserId = async (userId: number): Promise<Rental[] | null
         }
     });
 }
+
+export const createRental = async (rentalData: RentalToBeCreated): Promise<Rental> => {
+    return await prisma.rental.create({
+        data: rentalData
+    });
+};

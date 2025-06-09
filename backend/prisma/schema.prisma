@@ -59,7 +59,7 @@ model Rental {
   id Int @id @default(autoincrement())
   userId Int
   bikeId Int
-  startTime DateTime
+  startTime DateTime @default(now())
   endTime DateTime?
   status String @db.VarChar(64)
   payment Payment?

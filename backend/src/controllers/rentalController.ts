@@ -13,4 +13,15 @@ export class RentalController {
       return ErrorHandler.handle(res, error);
     }
   }
+
+  public static async createRental(req: Request, res: Response) {
+    try {
+      const userId = extractUserIdFromToken(req.headers.authorization);
+      const rentalData = { ...req.body, userId };
+      const rental = await rentalService.createRental(rentalData);
+      res.status(201).json(rental);
+    } catch (error) {
+      return ErrorHandler.handle(res, error);
+    }
+  }
 }
