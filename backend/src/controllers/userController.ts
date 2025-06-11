@@ -29,6 +29,8 @@ export class UserController {
   public static async register(req: Request, res: Response) {
     try {
       const { name, email, password } = req.body;
+
+      UserValidator.validateRegister({ name, email, password });
       const user = await userService.register({ name, email, password });
       res.status(201).json(user);
     } catch (error) {
