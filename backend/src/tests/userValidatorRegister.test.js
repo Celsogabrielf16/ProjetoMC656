@@ -1,4 +1,4 @@
-import { UserValidator } from '../../validators/userValidator';
+import { UserValidator } from '../validators/userValidator';
 
 describe('UserValidator - validateRegister', () => {
     let validPayload;
