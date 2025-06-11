@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import * as bikeService from '../services/bikeService';
 import { ErrorHandler } from '../utils/ErrorHandler';
 import { extractUserIdFromToken } from '../utils/authUtils';
+import { BikeValidator } from '../validators/BikeValidator';
 
 export class BikeController {
     public static async getAllBikes(req: Request, res: Response) {
@@ -49,7 +50,11 @@ export class BikeController {
     public static async createBike(req: Request, res: Response) {
         try {
             const userId = extractUserIdFromToken(req.headers.authorization);
-            const bike = await bikeService.createBike({ ownerId: userId, ...req.body });
+            const bikePayload = { ownerId: userId, ...req.body }
+
+            BikeValidator.validate(bikePayload)
+
+            const bike = await bikeService.createBike(bikePayload);
             res.status(201).json(bike);
         } catch (error) {
             return ErrorHandler.handle(res, error);
