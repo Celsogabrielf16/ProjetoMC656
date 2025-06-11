@@ -66,7 +66,7 @@ describe('UserValidator - validateRegister', () => {
         });
 
         it('should reject email with not allowed domain', () => {
-            validPayload.email = 'usuario@exemplo.org';
+            validPayload.email = 'usuario@exemplo.br';
             expect(() => UserValidator.validateRegister(validPayload)).toThrow('The email must belong to the @dac.unicamp.br domain');
         });
     });
