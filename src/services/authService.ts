@@ -1,6 +1,6 @@
-import { User } from '../types/user'
+import { UserToken } from '../types/user'
 
-export async function login(email: string, password: string): Promise<User> {
+export async function login(email: string, password: string): Promise<UserToken> {
   
   const res = await fetch('http://localhost:3001/user/login', {
     method: 'POST',
