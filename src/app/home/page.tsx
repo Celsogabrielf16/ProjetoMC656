@@ -1,26 +1,59 @@
+'use client';
+
+import { BikeHighlightCard } from "@/components/BikeHighlightCard";
 import Header from "@/components/Header";
-import Image from "next/image";
+import { SearchBar } from "@/components/SearchBar";
+import { Bike } from "@/types/bike";
+import { useEffect, useState } from "react";
+import * as bikeService from '@/services/bikeService';
+import { Footer } from "@/components/Footer";
 
-import Bike from "@/assets/bike.png";
+export default function Home() {	
+	const [bikes, setBikes] = useState<Bike[]>([]);
+	const [loading, setLoading] = useState<boolean>(true);
 
-export default function Home() {
+	useEffect(() => {
+		async function fetchBikes() {
+			const bikes = await bikeService.getAllBikes();
+			setBikes(bikes);
+		}
+
+		fetchBikes();
+
+		setLoading(false);
+	}, [])
+
 	return (
 		<div className="flex flex-col px-16 py-8">
 			<Header />
-			<div className="flex justify-between gap-[64px] my-16 px-8">
-				<div className="flex flex-col gap-8 w-[500px]">
-					<p className="text-[48px]">Pedale com liberdade no campus</p>
-					<p className="text-[20px] leading-loose">
-						Uma plataforma entre estudantes da Unicamp para facilitar o
-						empréstimo temporário de bicicletas com segurança, praticidade e
-						confiança.
-					</p>
-					<button className="bg-[#E63946] p-2 w-[300px] text-white border rounded-[24px] cursor-pointer">
-						Cadastre-se
-					</button>
-				</div>
-				<Image src={Bike} alt="bike-image" className="w-[500px]" />
+			<div className="flex-col">
+				<SearchBar />
+				{ loading || !bikes ? (
+					<div className="w-[1100px] mt-14 mx-auto flex flex-col gap-6">
+						<p>Carregando ...</p>
+					</div>
+				) : (
+					<>
+						<div className="w-[1100px] mt-14 mx-auto flex flex-col gap-6">
+							<h4 className="text-2xl">Bikes em destaque entre os estudantes</h4>
+							<div className="flex gap-8">
+								<BikeHighlightCard {...bikes[0]}/>
+								<BikeHighlightCard {...bikes[1]}/>
+								<BikeHighlightCard {...bikes[0]}/>
+							</div>
+						</div>
+						<div className="w-[1100px] mt-14 mx-auto flex flex-col gap-6">
+							<h4 className="text-2xl">Escolha pelo seu estilo de pedalada</h4>
+							<div className="flex gap-8">
+								<BikeHighlightCard {...bikes[0]}/>
+								<BikeHighlightCard {...bikes[1]}/>
+								<BikeHighlightCard {...bikes[0]}/>
+							</div>
+						</div>
+					</>
+				) }
 			</div>
+      <Footer />
 		</div>
 	);
 }
