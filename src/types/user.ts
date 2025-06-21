@@ -3,3 +3,7 @@ export interface User {
     email: string;
     senha: string;
 }
+
+export interface UserToken {
+    token: string;
+}
