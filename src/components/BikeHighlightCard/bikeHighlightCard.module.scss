@@ -1,0 +1,47 @@
+.bike-card {
+  display: flex;
+  flex-direction: column;
+  color: #1e1e1f;
+  font-size: 16px;
+}
+
+.bike-card__info {
+  width: 100%;
+  padding: 12px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.bike-card__model {
+  font-size: 24px;
+}
+
+.bike-card__status {
+  display: flex;
+  gap: 16px;
+  margin-top: 4px;
+
+  p {
+    line-height: 14px;
+    margin-top: 3px;
+  }
+}
+
+.bike-card__rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.bike-card__rate {
+  font-size: 18px;
+  color: #777777;
+  margin: auto 0;
+}
+
+.bike-card__image {
+  width: 350px;
+  border-radius: 24px;
+}

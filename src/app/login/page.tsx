@@ -39,8 +39,12 @@ const Login: React.FC = () => {
 
 	const onSubmit = async (data: FormData) => {
 		try {
-		  const user = await login(data.email, data.password);
-		  alert(`Login realizado com sucesso! Bem-vindo(a), ${user.name}`);
+		  const { token } = await login(data.email, data.password);
+
+			localStorage.setItem('userToken', token);
+
+			push("/home");
+
 		} catch (error: any) {
 		  alert(error.message);
 		}
