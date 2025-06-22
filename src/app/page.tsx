@@ -7,6 +7,7 @@ import bikecards from "@/assets/bikecards.png";
 import map from "@/assets/map.png";
 import card1 from "@/assets/card1.png";
 import unicamp from "@/assets/unicamp.png";
+import Link from "next/link";
 
 export default function Home() {
 	return (
@@ -34,9 +35,11 @@ export default function Home() {
 						empréstimo temporário de bicicletas com segurança, praticidade e
 						confiança.
 					</p>
-					<button className="bg-[#E63946] p-2 w-[300px] text-white border rounded-[24px] cursor-pointer">
-						Cadastre-se
-					</button>
+					<Link href={`/register`}>
+						<button className="bg-[#E63946] p-2 w-[300px] text-white border rounded-[24px] cursor-pointer">
+							Cadastre-se
+						</button>
+					</Link>
 				</div>
 				<Image src={Bike} alt="bike-image" className="w-[500px]" />
 			</div>
