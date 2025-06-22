@@ -32,14 +32,21 @@ export default function BikeModal({ bike, onClose, isOpen  }: BikeModalProps) {
           &times;
         </button>
 
-        {/* Imagem da bike */}
-        <div className="flex justify-center mb-6">
-          <img
-            src={bike.imagePath}
-            alt={`Imagem da bike ${bike.model}`}
-            className="rounded-xl w-[600px] h-[400px] object-cover border"
-          />
-        </div>
+{/* Imagem da bike */}
+<div className="flex justify-center mb-6">
+  <div className="h-[400px] w-[600px] overflow-hidden rounded-xl">
+    <Image
+      src={`/images/${bike.imagePath}`}
+      alt={`Imagem da bike ${bike.model}`}
+      width={600}
+      height={400}
+      className="w-full h-full object-cover object-center"
+    />
+  </div>
+</div>
+
+
+
 
           {/* Título, locador e status */}
           <div className="flex justify-between items-center mb-6">
