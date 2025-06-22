@@ -7,6 +7,7 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import * as bikeService from '@/services/bikeService';
 import ratting from "@/assets/ratting.png";
+import Star from '@/assets/star.png';
 import Image from "next/image";
 
 
@@ -42,12 +43,8 @@ export default function BikeInfos() {
       <div className="flex flex-col items-center justify-center px-8 py-12 max-w-5xl mx-auto">
         
         {/* Imagem da bike centralizada */}
-        <div className="w-full flex justify-center mb-8 border">
-          <img
-            src={bike.imagePath}
-            alt={`Imagem da bike ${bike.model}`}
-            className="w-[1000px] h-[600px] object-cover rounded-xl border"
-          />
+        <div className="w-full flex justify-center mb-8">
+          <Image src={`/images/${bike.imagePath}`} className="w-[1000px] h-[600px] object-cover rounded-xl" alt={`Imagem da bicicleta ${bike.model}`} width={1000} height={600}/>
         </div>
         {/* Informações da bike */}
         <div className="text-left w-full">
@@ -58,7 +55,8 @@ export default function BikeInfos() {
               <p className="text-xl text-gray-500">R$ {bike.hourlyRate}/hora</p>
 
               <div className="flex items-center gap-2 text-yellow-500 mt-2">
-                <span>⭐ {bike.rating}</span>
+                <Image src={Star} alt="Star" />
+                <p>4.8</p>
                 <span className="text-sm text-gray-600">Disponível</span>
               </div>
             </div>

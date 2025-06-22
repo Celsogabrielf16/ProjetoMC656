@@ -39,15 +39,15 @@ export default function Home() {
 							<div className="flex gap-8">
 								<BikeHighlightCard {...bikes[0]}/>
 								<BikeHighlightCard {...bikes[1]}/>
-								<BikeHighlightCard {...bikes[0]}/>
+								<BikeHighlightCard {...bikes[2]}/>
 							</div>
 						</div>
 						<div className="w-[1100px] mt-14 mx-auto flex flex-col gap-6">
 							<h4 className="text-2xl">Escolha pelo seu estilo de pedalada</h4>
 							<div className="flex gap-8">
-								<BikeHighlightCard {...bikes[0]}/>
-								<BikeHighlightCard {...bikes[1]}/>
-								<BikeHighlightCard {...bikes[0]}/>
+								<BikeHighlightCard {...bikes[3]}/>
+								<BikeHighlightCard {...bikes[4]}/>
+								<BikeHighlightCard {...bikes[5]}/>
 							</div>
 						</div>
 					</>
