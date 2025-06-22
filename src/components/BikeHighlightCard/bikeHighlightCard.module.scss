@@ -43,5 +43,7 @@
 
 .bike-card__image {
   width: 350px;
+  height: 250px;
   border-radius: 24px;
+  object-fit: cover;
 }

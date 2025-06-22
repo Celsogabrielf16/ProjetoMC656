@@ -1,14 +1,13 @@
 import { Bike } from "@/types/bike";
 import styles from './bikeCard.module.scss';
 import Image from 'next/image';
-import BikeImage from '@/assets/bike01.jpg';
 import Star from '@/assets/star.png';
 import Link from "next/link";
 
 export const BikeCard = (bike: Bike) => {
   return (
     <Link href={`bike-infos/${bike.id}`} className={styles['bike-card']}>
-      <Image src={BikeImage} className={styles['bike-card__image']} alt="Imagem de uma bicicleta"/>
+      <Image src={`/images/${bike.imagePath}`} className={styles['bike-card__image']} alt={`Imagem da bicicleta ${bike.model}`} width={350} height={250}/>
       <div className={styles['bike-card__info']}>
         <div className={styles['bike-card__header']}>
           <div className={styles['bike-card__model-wrapper']}>
