@@ -1,3 +1,5 @@
+import { BikeData } from '@/app/bike/create/page';
+import { getCurrentLocation } from '@/hooks/location';
 import { Bike } from '@/types/bike';
 
 interface FilterParams {
@@ -34,3 +36,33 @@ export async function getFilteredBikes(params: FilterParams): Promise<Bike[]> {
   
   return data;
 }
+
+export const postBike = async (bike: BikeData): Promise<void> => {
+  const {locationLat, locationLng } = await getCurrentLocation();
+  const token = localStorage.getItem('userToken');
+
+  if (!token) {
+    alert('sem token');
+  }
+
+  const fullBike = {
+    ...bike,
+    locationLat,
+    locationLng,
+  };
+
+  const res = await fetch('http://localhost:3001/bike', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify(fullBike),
+  });
+
+  if (!res.ok) {
+    const errorText = await res.text();
+    throw new Error(`Erro ao criar bike: ${errorText}`);
+  }
+};
+

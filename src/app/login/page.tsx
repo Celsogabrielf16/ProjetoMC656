@@ -42,6 +42,7 @@ const Login: React.FC = () => {
 		  const { token } = await login(data.email, data.password);
 
 			localStorage.setItem('userToken', token);
+			
 
 			push("/home");
 
