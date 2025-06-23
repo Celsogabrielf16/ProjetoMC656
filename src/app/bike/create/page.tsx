@@ -76,7 +76,7 @@ const Create: React.FC = () => {
 	});
 
 	const onSubmit = async (
-		data: Omit<BikeData, "ownerId" | "locationLat" | "locationLng">
+		data: BikeData
 	) => {
 		try {
 			await postBike(data);

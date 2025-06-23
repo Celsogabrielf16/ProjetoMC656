@@ -37,7 +37,7 @@ export async function getFilteredBikes(params: FilterParams): Promise<Bike[]> {
   return data;
 }
 
-export const postBike = async (bike: Omit<BikeData, 'ownerId' | 'locationLat' | 'locationLng'>): Promise<void> => {
+export const postBike = async (bike: BikeData): Promise<void> => {
   const {locationLat, locationLng } = await getCurrentLocation();
   const token = localStorage.getItem('userToken');
 
