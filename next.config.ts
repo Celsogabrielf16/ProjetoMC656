@@ -8,8 +8,7 @@ const nextConfig: NextConfig = {
         destination: '/home',
       },
     ];
-  },
-
+  }
 };
 
 export default nextConfig;
