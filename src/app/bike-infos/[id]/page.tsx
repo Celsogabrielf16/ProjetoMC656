@@ -9,6 +9,7 @@ import * as bikeService from '@/services/bikeService';
 import ratting from "@/assets/ratting.png";
 import Star from '@/assets/star.png';
 import Image from "next/image";
+import { LoadingScreen } from "@/components/LoadingScreen/LoadingScreen ";
 
 
 export default function BikeInfos() {
@@ -38,9 +39,7 @@ export default function BikeInfos() {
     <main className="flex flex-col px-16 py-8">
       <Header />
     {loading || !bike ? (
-        <div className="flex justify-center items-center min-h-[300px] w-full">
-          <p className="text-gray-500 text-lg">Carregando ...</p>
-        </div>
+        <LoadingScreen />
     ) : (
       <div className="flex flex-col items-center justify-center px-8 py-12 max-w-5xl mx-auto">
         

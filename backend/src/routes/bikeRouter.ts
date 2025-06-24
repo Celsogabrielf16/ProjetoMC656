@@ -4,7 +4,6 @@ import { BikeController } from '../controllers/bikeController';
 const router = Router();
 
 router.get('/', (req, res) => {
-    console.log('Get all bikes request received:');
     BikeController.getAllBikes(req, res);
 });
 

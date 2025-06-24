@@ -42,7 +42,7 @@ const Header: React.FC = () => {
 					>
 						Sair
 					</p>
-					<p className="text-[16px] cursor-pointer" onClick={() => push('/bike/create')}>Emprestar bike</p>
+					<p className="text-[16px] cursor-pointer" onClick={() => push('/bike/create')}>Cadastrar bike</p>
 				</div>
 			) : (
 				<div className="flex justify-between gap-16">

@@ -60,6 +60,9 @@ export const postBike = async (bike: BikeData): Promise<void> => {
     body: JSON.stringify(fullBike),
   });
 
+  console.log(res);
+  
+
   if (!res.ok) {
     const errorText = await res.text();
     throw new Error(`Erro ao criar bike: ${errorText}`);

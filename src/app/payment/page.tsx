@@ -1,14 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { FaCheck, FaStar, FaUser } from "react-icons/fa";
+import { FaCheck, FaStar } from "react-icons/fa";
 import React, { useEffect, useState } from "react";
 import { Bike } from "@/types/bike";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Header from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { LoadingScreen } from "@/components/LoadingScreen/LoadingScreen ";
 
 const Payment: React.FC = () => {
+	const router = useRouter();
 	const searchParams = useSearchParams();
 	const bikeId = searchParams.get("bikeId");
 	const hours = searchParams.get("hours");
@@ -26,14 +28,24 @@ const Payment: React.FC = () => {
 		}
 	}, [bikeId]);
 
+	const handleConfirm = (confirm: boolean) => {
+		setConfirm(confirm);
+
+		setTimeout(() => {
+			setConfirm(false);
+			router.push("/home");
+			console.log("Pagamento concluído com sucesso");
+		}, 5000);
+	}
+
   const isExternalUrl = bike?.imagePath.startsWith('http');
 
 	if (!bike) {
-		return <div>Carregando...</div>;
+		return <LoadingScreen />;
 	}
 
 	return (
-		<>
+		<main className="flex flex-col px-16 py-8">
 			<Header />
 			<div className="flex flex-col gap-8 mx-64">
 				<p className="text-[24px] leading-[32px] font-medium">Pagamento</p>
@@ -74,7 +86,7 @@ const Payment: React.FC = () => {
 
 						<button
 							className="w-full bg-red-500 text-white rounded-lg py-2 px-4 hover:bg-red-600"
-							onClick={() => setConfirm(true)}
+							onClick={() => handleConfirm(true)}
 						>
 							Pagar
 						</button>
@@ -91,7 +103,7 @@ const Payment: React.FC = () => {
 					</div>
 				</div>
 			)}
-		</>
+		</main>
 	);
 };
 

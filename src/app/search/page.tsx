@@ -8,10 +8,12 @@ import { Bike } from '@/types/bike';
 import styles from './search.module.scss';
 import Header from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { LoadingScreen } from '@/components/LoadingScreen/LoadingScreen ';
 
 export default function SearchPage() {
   const searchParams = useSearchParams();
   const [bikes, setBikes] = useState<Bike[]>([]);
+	const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,22 +43,30 @@ export default function SearchPage() {
     };
 
     fetchData();
+
+    setLoading(false);
   }, [searchParams]);
 
   return (
     <div className="flex flex-col px-16 py-8">
       <Header />
-      <SearchBar />
-      <div className={styles.cards}>
-        {bikes ? 
-          <p className={styles.bikesFound}>
-            {bikes.length > 1 ? `${bikes.length} Bikes encontradas` : `${bikes.length} Bike encontrada`}
-          </p> : ''
-        }
-        {bikes && bikes.length > 0 ? (bikes.map((bike) => (
-          <BikeCard key={bike.id} {...bike} />
-        ))) : <p>Nenhuma bicicleta encontrada para esse filtro</p>}
-      </div>
+      { loading ? (
+        <LoadingScreen />
+      ) : (
+        <>
+          <SearchBar />
+          <div className={styles.cards}>
+            {bikes ? 
+              <p className={styles.bikesFound}>
+                {bikes.length > 1 ? `${bikes.length} Bikes encontradas` : `${bikes.length} Bike encontrada`}
+              </p> : ''
+            }
+            {bikes && bikes.length > 0 ? (bikes.map((bike) => (
+              <BikeCard key={bike.id} {...bike} />
+            ))) : <p>Nenhuma bicicleta encontrada para esse filtro</p>}
+          </div>
+        </>
+      )}
       <Footer />
     </div>
   );

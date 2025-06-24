@@ -1,0 +1,30 @@
+.container {
+  width: 100vw;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+}
+
+.loading {
+  font-size: 32px;
+  color: #E63946;
+  margin-bottom: 150px;
+  animation: loadingAnimation 4s infinite;
+}
+
+@keyframes loadingAnimation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+  100% {
+    opacity: 1;
+  }
+}
