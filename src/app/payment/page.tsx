@@ -5,7 +5,6 @@ import { FaCheck, FaStar, FaUser } from "react-icons/fa";
 import React, { useEffect, useState } from "react";
 import { Bike } from "@/types/bike";
 import { useSearchParams } from "next/navigation";
-import bikePng from "@/assets/bike.png";
 import Header from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
@@ -27,6 +26,8 @@ const Payment: React.FC = () => {
 		}
 	}, [bikeId]);
 
+  const isExternalUrl = bike?.imagePath.startsWith('http');
+
 	if (!bike) {
 		return <div>Carregando...</div>;
 	}
@@ -37,8 +38,11 @@ const Payment: React.FC = () => {
 			<div className="flex flex-col gap-8 mx-64">
 				<p className="text-[24px] leading-[32px] font-medium">Pagamento</p>
 				<div className="flex gap-16">
-					<Image width={240} height={160} alt={bike.model} src={bikePng} />
-
+					{isExternalUrl ? (
+						<img src={bike.imagePath} alt={`Imagem da bicicleta ${bike.model}`} width={240} height={160}/>
+					) : (
+						<Image src={`/images/${bike.imagePath}`} alt={`Imagem da bicicleta ${bike.model}`} width={240} height={160}/>
+					)}
 					<div className="flex flex-col w-full gap-4">
 						<div className="flex justify-between width-full">
 							<div className="flex flex-col gap-2">

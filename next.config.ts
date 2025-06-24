@@ -8,7 +8,17 @@ const nextConfig: NextConfig = {
         destination: '/home',
       },
     ];
-  }
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'groovebikes.com.br',
+        port: '',
+        pathname: '/wp-content/uploads/**',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

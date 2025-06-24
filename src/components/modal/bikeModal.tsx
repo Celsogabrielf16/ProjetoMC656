@@ -16,6 +16,7 @@ interface BikeModalProps {
 
 export default function BikeModal({ bike, onClose, isOpen }: BikeModalProps) {
 	const { push } = useRouter();
+  const isExternalUrl = bike.imagePath.startsWith('http');
 
 	const [hours, setHours] = useState(1);
 	const estimatedPrice = (bike.hourlyRate * hours).toFixed(2);
@@ -35,13 +36,11 @@ export default function BikeModal({ bike, onClose, isOpen }: BikeModalProps) {
 				{/* Imagem da bike */}
 				<div className="flex justify-center mb-6">
 					<div className="h-[400px] w-[600px] overflow-hidden rounded-xl">
-						<Image
-							src={`/images/${bike.imagePath}`}
-							alt={`Imagem da bike ${bike.model}`}
-							width={600}
-							height={400}
-							className="w-full h-full object-cover object-center"
-						/>
+						{isExternalUrl ? (
+							<img src={bike.imagePath} className="w-full h-full object-cover object-center" alt={`Imagem da bicicleta ${bike.model}`} width={600} height={400}/>
+						) : (
+							<Image src={`/images/${bike.imagePath}`} className="w-full h-full object-cover object-center" alt={`Imagem da bicicleta ${bike.model}`} width={600} height={400}/>
+						)}
 					</div>
 				</div>
 

@@ -30,6 +30,8 @@ export default function BikeInfos() {
 
     setLoading(false);
   }, [])
+
+  const isExternalUrl = bike?.imagePath.startsWith('http');
   
   return (
     
@@ -44,7 +46,11 @@ export default function BikeInfos() {
         
         {/* Imagem da bike centralizada */}
         <div className="w-full flex justify-center mb-8">
+        {isExternalUrl ? (
+          <img src={bike.imagePath} className="w-[1000px] h-[600px] object-cover rounded-xl" alt={`Imagem da bicicleta ${bike.model}`} width={1000} height={600}/>
+        ) : (
           <Image src={`/images/${bike.imagePath}`} className="w-[1000px] h-[600px] object-cover rounded-xl" alt={`Imagem da bicicleta ${bike.model}`} width={1000} height={600}/>
+        )}
         </div>
         {/* Informações da bike */}
         <div className="text-left w-full">

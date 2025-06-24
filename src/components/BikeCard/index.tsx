@@ -5,9 +5,15 @@ import Star from '@/assets/star.png';
 import Link from "next/link";
 
 export const BikeCard = (bike: Bike) => {
+  const isExternalUrl = bike.imagePath.startsWith('http');
+
   return (
     <Link href={`bike-infos/${bike.id}`} className={styles['bike-card']}>
-      <Image src={`/images/${bike.imagePath}`} className={styles['bike-card__image']} alt={`Imagem da bicicleta ${bike.model}`} width={350} height={250}/>
+      {isExternalUrl ? (
+        <img src={bike.imagePath} className={styles['bike-card__image']} alt={`Imagem da bicicleta ${bike.model}`} width={350} height={250}/>
+      ) : (
+        <Image src={`/images/${bike.imagePath}`} className={styles['bike-card__image']} alt={`Imagem da bicicleta ${bike.model}`} width={350} height={250}/>
+      )}
       <div className={styles['bike-card__info']}>
         <div className={styles['bike-card__header']}>
           <div className={styles['bike-card__model-wrapper']}>
