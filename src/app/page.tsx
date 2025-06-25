@@ -14,10 +14,11 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
-	const token = localStorage.getItem("userToken");
 	const { push } = useRouter();
-
+	
 	useEffect(() => {
+		const token = localStorage.getItem("userToken");
+
 		fetch("http://localhost:3001/user/me", {
 			headers: {
 				Authorization: `Bearer ${token}`,
@@ -27,7 +28,7 @@ export default function Home() {
 				push("/home");
 			}
 		});
-	}, [token]);
+	}, []);
 
 	return (
 		<div className="flex flex-col px-16 py-8">

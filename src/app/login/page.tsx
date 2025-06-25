@@ -40,12 +40,8 @@ const Login: React.FC = () => {
 	const onSubmit = async (data: FormData) => {
 		try {
 		  const { token } = await login(data.email, data.password);
-
 			localStorage.setItem('userToken', token);
-			
-
 			push("/home");
-
 		} catch (error: any) {
 		  alert(error.message);
 		}
