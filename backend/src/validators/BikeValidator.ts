@@ -45,6 +45,7 @@ export class BikeValidator {
           'size.range': 'O tamanho deve estar entre 12 e 30',
         }),
       imagePath: Joi.string()
+        .uri()
         .required()
         .messages({
           'string.base': 'A URL da imagem deve ser uma string',
